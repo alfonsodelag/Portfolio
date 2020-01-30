@@ -1,9 +1,14 @@
+//  Llamados a librerias
+//  llamado a libreria de mysql
 const mysql = require('mysql');
 const { promisify } = require('util');
+//  Mandar a llamar las llaves para tu conexión a la base de datos
 const { database } = require('./keys');
 
+//  Un pool es el nombre de la conexión de la base de datos.
 const pool = mysql.createPool(database);
 
+//  getConnection sirve para realizar la conexión a la base de datos
 pool.getConnection((err, connection) => {
     if(err) {
         if(err.code === 'PROTOCOL_CONNECTION_LOST') {

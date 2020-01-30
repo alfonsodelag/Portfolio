@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+
 
 module.exports = {
 
@@ -9,10 +9,3 @@ module.exports = {
         database: 'database_links'
     }
 }
-
-// db.connect((err) => {
-//     if(err){
-//         throw err;
-//     }
-//     console.log('MySQL Connected');
-// });
