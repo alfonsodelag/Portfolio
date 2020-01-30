@@ -1,8 +1,12 @@
-const express = require('express');
-const morgan  = require('morgan');
-const exphbs  = require('express-handlebars');
-const path    = require('path');
-const { pool } = require('./database.js');
+const express      = require('express');
+const morgan       = require('morgan');
+const exphbs       = require('express-handlebars');
+const path         = require('path');
+const { pool }     = require('./database.js');
+const flash        = require('connect-flash');
+const session      = require('express-session');
+const MySQLStore   = require('express-mysql-session');
+const { database } = require('./keys');
 
 
 
@@ -21,12 +25,21 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 //  Middlewares
+app.use(session({
+    secret: 'alfonsodelag',
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLStore(database)
+}));
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+
 //  Global Vars
 app.use((req,res,next) => {
+    app.locals.success = req.flash('success');
     next();
 });
 
