@@ -7,8 +7,25 @@ router.get('/add', (req, res) => {
     res.render('links/add');
 });
 
-router.post('/add', (req,res) => {
-    res.send('received');
+router.post('/add', async (req,res) => {
+    const { title, url, description } = req.body;
+    const newLink = {
+        title,
+        url,
+        description
+    };
+    try{
+        await pool.query('INSERT INTO links set ?', [newLink]);
+        res.send('received');
+    } catch(e) {
+        console.log(e);
+    }
+});
+
+router.get('/', async (req,res) => {
+    const links = await pool.query('SELECT * FROM links');
+    console.log(links);
+    res.render('links/list', { links});
 });
 
 module.exports = router;
