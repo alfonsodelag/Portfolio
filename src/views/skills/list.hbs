@@ -1,0 +1,24 @@
+<div class="container p-4">
+    <div class="row">
+
+        {{#each technologies}}
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <p class="m-2">{{title}}</p>
+                        <p>{{level}}%</p>
+                        <a href="/technologies/delete/{{id}}" class="btn btn-danger">Delete technology </Link></a>
+                        <a href="/technologies/edit/{{id}}" class="btn btn-secondary">Edit</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>There are no technologies saved yet.</p>
+                    <a href="/technologies/add">Create One!</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

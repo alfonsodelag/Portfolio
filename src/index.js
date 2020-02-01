@@ -3,11 +3,10 @@ const express      = require('express');
 const morgan       = require('morgan');
 const exphbs       = require('express-handlebars');
 const path         = require('path');
-const { pool }     = require('./database.js');
 const flash        = require('connect-flash');
 const session      = require('express-session');
 const MySQLStore   = require('express-mysql-session');
-const { database } = require('./keys');
+const { database } = require('./config/keys');
 const passport     = require('passport');
 
 
@@ -58,11 +57,11 @@ app.use((req,res,next) => {
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/links', require('./routes/links'));
-app.use(require('./routes/experience'));
-app.use(require('./routes/softskills'));
-app.use(require('./routes/technologies'));
-app.use(require('./routes/about'));
-app.use(require('./routes/contact'));
+app.use('/about', require('./routes/about'));
+app.use('/technologies', require('./routes/technologies'));
+app.use('/softskills', require('./routes/softskills'));
+app.use('/contact', require('./routes/contact'));
+app.use('/experience', require('./routes/experience'));
 
 
 //  Public
