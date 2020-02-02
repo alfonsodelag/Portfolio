@@ -13,9 +13,8 @@ const skills = {
     addSkills: async (req,res) => {
         const { title, level } = req.body;
         const link = {
-            id,
-            name,
-            percentage,
+            title,
+            level,
             user_id: req.user.id
         };
         try{
@@ -41,11 +40,10 @@ const skills = {
     editSkills: async (req, res) => {
         console.log();
         const { id } = req.params;
-        const { name, percentage } = req.body;
+        const { title, level } = req.body;
         const newSkills = {
-            name,
-            percentage,
-            id_user
+            title, 
+            level,
         };
         await pool.query('UPDATE skills set ? WHERE id = ?', [newSkills, id]);
         req.flash('success', 'Skills Updated Successfully');

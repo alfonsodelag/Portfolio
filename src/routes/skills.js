@@ -14,7 +14,7 @@ router.get('/add', isLoggedIn, (req, res) => res.render('skills/add'));
 
 
 //  AQUI ES DONDE SE POSTEA EL CONTENIDO A LA BASE DE DATOS!
-router.post('/add', isLoggedIn, (req,res) => skills.addSkill(req, res));
+router.post('/add', isLoggedIn, (req,res) => skills.addSkills(req, res));
 
 
 //  Esto es lo que hace que funcione el botón Skill
