@@ -3,12 +3,12 @@
         <div class="col-md-4 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form action="/experience/edit/{{technology.id}}" method="POST">
+                    <form action="/about/add" method="POST">
                         <div class="form-group">
-                            <input type="text" value="{{technology.title}}" class="form-control" name="title" placeholder="Title"> 
+                            <input type="text" class="form-control" name="title" placeholder="Title"> 
                         </div>
                         <div class="form-group">
-                            <input type="range" value="{{technology.level}}" name="level" class="form-control" placeholder="level" min="0" max ="100">
+                            <textarea type="text" name="Description" class="form-control" placeholder="Description"></textarea>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-success btn-block">

@@ -1,0 +1,23 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each contact}}
+            <div class="col-md-12">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}} {{Year}}</h5>
+                        <p class="card-text">{{Description}}%</p>
+                        <a href="/contact/delete/{{id}}" class="btn btn-danger">Delete contact </Link></a>
+                        <a href="/contact/edit/{{id}}" class="btn btn-secondary">Edit</a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-center">
+                    <p>There are no contact saved yet.</p>
+                    <a href="/contact/add">Create One!</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

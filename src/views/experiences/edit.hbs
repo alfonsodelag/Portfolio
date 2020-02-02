@@ -3,12 +3,15 @@
         <div class="col-md-4 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form action="/skills/edit/{{skill.id}}" method="POST">
+                    <form action="/experiences/edit/{{experience.id}}" method="POST">
                         <div class="form-group">
-                            <input type="text" value="{{skill.title}}" class="form-control" name="title" placeholder="Title"> 
+                            <input type="text" value="{{experience.title}}" class="form-control" name="title" placeholder="Title"> 
                         </div>
                         <div class="form-group">
-                            <input type="range" value="{{skill.level}}" name="level" class="form-control" placeholder="level" min="0" max ="100">
+                            <input type="number" value="{{experience.year}}" name="Year" class="form-control" placeholder="Year">
+                        </div>
+                        <div class="form-group">
+                            <textarea type="text" value="{{experience.description}}" name="Description" class="form-control" placeholder="Description">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-success btn-block">

@@ -1,6 +1,7 @@
 -- CREATE DATABASE database_portfolios;
 
 -- USE database_portfolios;
+
 -- -- USERS TABLE
 -- CREATE TABLE users(
 --     id INT(11) NOT NULL,
@@ -41,6 +42,13 @@
 -- DESCRIBE links;
 
 
+CREATE TABLE technologies (
+ id int(11) NOT NULL,
+ title varchar(150) NOT NULL,
+ level varchar(255) NOT NULL,
+ user_id int(11) DEFAULT NULL,
+ created_at timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
 
 

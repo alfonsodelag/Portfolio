@@ -1,9 +1,9 @@
 //  
 const skills = { 
     id = 0,
-    name = '',
-    percentage = '',
-    id_user = '',
+    title = '',
+    level = '',
+    id_user = ''
 }
 
 module.export = skills;

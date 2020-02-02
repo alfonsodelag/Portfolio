@@ -31,11 +31,11 @@ const skills = {
         req.flash('success', 'skills Removed succesfully');
         res.redirect('/skills');
     },
-    getSkills: async (req, res) => {
+    getSkill: async (req, res) => {
         const { id } = req.params;
-        const skills = await pool.query('SELECT * FROM skills WHERE id = ?', [id]);
-        console.log(skills[0]);
-        res.render('skills/edit', {Skills: skills[0]});
+        const skill = await pool.query('SELECT * FROM skills WHERE id = ?', [id]);
+        console.log(skill[0]);
+        res.render('skills/edit', {Skill: skill[0]});
     },
     editSkills: async (req, res) => {
         console.log();

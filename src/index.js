@@ -61,7 +61,7 @@ app.use('/about', require('./routes/about'));
 app.use('/skills', require('./routes/skills'));
 app.use('/technologies', require('./routes/technologies'));
 app.use('/contact', require('./routes/contact'));
-app.use('/experience', require('./routes/experience'));
+app.use('/experiences', require('./routes/experiences'));
 
 
 //  Public
