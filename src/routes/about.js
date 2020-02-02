@@ -6,7 +6,7 @@ const about = require('../controller/about');
 
 
 //  ESTO HACE QUE FUNCIONE /about/
-router.get('/', isLoggedIn,(req,res) => about.getAbout(req, res) );
+router.get('/', isLoggedIn,(req,res) => about.getAboutInfo(req, res) );
 
 
 router.get('/add', isLoggedIn, (req, res) => res.render('about/add'));

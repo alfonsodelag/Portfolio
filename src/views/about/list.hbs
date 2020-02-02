@@ -1,23 +1,35 @@
 <div class="container p-4">
     <div class="row">
-        {{#each experiences}}
+        {{#if info.about}}
             <div class="col-md-12">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">{{title}} {{Year}}</h5>
-                        <p class="card-text">{{Description}}%</p>
-                        <a href="/experiences/delete/{{id}}" class="btn btn-danger">Delete experience </Link></a>
-                        <a href="/experiences/edit/{{id}}" class="btn btn-secondary">Edit</a>
+                        <h5 class="card-title">{{info.about.title}}</h5>
+                        <p class="card-text">{{info.about.description}}</p>
+                        <a href="/about/edit/{{info.id}}" class="btn btn-secondary">Edit</a>
+                        <a href="/skills/add" class="btn btn-secondary">Add Skills</a>
+                        <a href="/experience/add" class="btn btn-secondary">Add Experiences</a>
+                        <a href="/technologies/add" class="btn btn-secondary">Add Technologies</a>
                     </div>
                 </div>
             </div>
-            {{else}}
+            {{#if info.skills}}
+            <ul class="list-group">
+                    {{#each info.skills}}
+                        <li class="list-group-item">
+                            <p>{{title}}-{{skills.level}}</p>
+                        </li>
+                    {{/each}}
+                
+            </ul>
+            {{/if}}
+        {{else}}
             <div class="col-md-4 mx-auto">
                 <div class="card card-body text-center">
-                    <p>There are no Experiences saved yet.</p>
-                    <a href="/experiences/add">Create One!</a>
+                    <p>There are no About saved yet.</p>
+                    <a href="/about/add">Create One!</a>
                 </div>
             </div>
-        {{/each}}
+        {{/if}}
     </div>
 </div>
