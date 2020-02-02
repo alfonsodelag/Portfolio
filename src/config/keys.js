@@ -6,6 +6,6 @@ module.exports = {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'database_links'
+        database: 'db_portfolios'
     }
 }

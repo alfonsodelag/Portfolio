@@ -1,5 +1,4 @@
-//  
-let link = { 
+  let link = { 
     title:'',
     url:'',
     description: '',

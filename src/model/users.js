@@ -1,5 +1,4 @@
-//  
-const user = { 
+ const user = { 
     id = 0,
     name = '',
     lastname = '',

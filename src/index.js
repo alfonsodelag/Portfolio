@@ -58,8 +58,8 @@ app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/links', require('./routes/links'));
 app.use('/about', require('./routes/about'));
+app.use('/skills', require('./routes/skills'));
 app.use('/technologies', require('./routes/technologies'));
-app.use('/softskills', require('./routes/softskills'));
 app.use('/contact', require('./routes/contact'));
 app.use('/experience', require('./routes/experience'));
 

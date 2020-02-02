@@ -1,12 +1,9 @@
 //  
-const user = { 
+const skills = { 
     id = 0,
     name = '',
-    lastname = '',
-    email = '',
-    password = '',
-    description = '',
-    cv = '',
-    photo = ''
+    percentage = '',
+    id_user = '',
 }
 
+module.export = skills;

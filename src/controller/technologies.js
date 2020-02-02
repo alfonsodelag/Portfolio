@@ -5,7 +5,6 @@
 const pool = require('../config/database.js');
 
 
-
 const technologies = {
     getTechnologies: async (req,res) => {
         const technologies = await pool.query('SELECT * FROM technologies WHERE user_id= ?', [req.user.id]);
@@ -28,7 +27,7 @@ const technologies = {
     },
     deleteTechnology: async (req,res) => {
         const { id } = req.params;
-        await pool.query('DELETE FROM technologies WHERE ID =?', [id]);
+        await pool.query('DELETE FROM technologies WHERE id =?', [id]);
         req.flash('success', 'technologies Removed succesfully');
         res.redirect('/technologies');
     },
