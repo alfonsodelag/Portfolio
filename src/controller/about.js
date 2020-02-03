@@ -4,15 +4,15 @@
 //  Pool son las funciones para manejar la base de datos
 const pool = require('../config/database.js');
 const nodemailer = require('nodemailer');
-let transporter = nodemailer.createTransport({
-    host: "imap.gmail.com",
-    port: 993, //995
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass // generated ethereal password
-    }
-  });
+// let transporter = nodemailer.createTransport({
+//     host: "imap.gmail.com",
+//     port: 993, //995
+//     secure: false, // true for 465, false for other ports
+//     auth: {
+//       user: testAccount.user, // generated ethereal user
+//       pass: testAccount.pass // generated ethereal password
+//     }
+//   });
 const about = {
 
     getAboutInfo: async (req,res) => {
@@ -68,17 +68,17 @@ const about = {
         await pool.query('UPDATE about set ? WHERE id = ?', [newabout, id]);
         req.flash('success', 'about Updated Successfully');
         res.redirect('/about');
-    },
-    sendEmail: async (req,res) =>{
-        let info = await transporter.sendMail({
-            from: '"Fred Foo 👻" <foo@example.com>', // sender address
-            to: "sicu.erickm@gmail.com, alfonsodelag1@gmail.com", // list of receivers
-            subject: req.subject, // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>" // html body
-          });
-        console.log("PreviewURL: $s",nodemailer.getTestMessageUrl(info));
     }
+    // sendEmail: async (req,res) =>{
+    //     let info = await transporter.sendMail({
+    //         from: '"Fred Foo 👻" <foo@example.com>', // sender address
+    //         to: "sicu.erickm@gmail.com, alfonsodelag1@gmail.com", // list of receivers
+    //         subject: req.subject, // Subject line
+    //         text: "Hello world?", // plain text body
+    //         html: "<b>Hello world?</b>" // html body
+    //       });
+    //     console.log("PreviewURL: $s",nodemailer.getTestMessageUrl(info));
+    // }
 }
 
 module.exports = about;
