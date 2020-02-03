@@ -4,6 +4,9 @@ const user = require('../model/contact');
 //  Pool son las funciones para manejar la base de datos
 const pool = require('../config/database.js');
 
+const nodemailer = require('nodemailer');
+
+
 
 
 const contact = {
@@ -26,6 +29,28 @@ const contact = {
         } catch(e) {
             console.log(e);
         }
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+    user: 'nodejsproject123',
+    pass: 'Assembler11' ///
+    }
+});
+    const mailOptions={
+        from: email,
+        cc:email,
+        to:'nodejsproject123@gmail.com', //
+        subject: title,
+        text: description
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+        res.redirect('....your route...');
+        } else {
+        res.redirect('....your route....');
+        }
+    });
+
     },
     deleteContact: async (req,res) => {
         const { id } = req.params;
