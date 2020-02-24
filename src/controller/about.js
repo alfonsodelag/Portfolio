@@ -17,17 +17,7 @@ const about = {
 
     getAboutInfo: async (req,res) => {
         const about = await pool.query('SELECT * FROM about WHERE user_id= ?', [req.user.id]);
-        let skills = await pool.query('SELECT * FROM skills WHERE user_id= ?', [req.user.id]);
-        const experiences = await pool.query('SELECT * FROM experiences WHERE user_id= ?', [req.user.id]);
-        const technologies = await pool.query('SELECT * FROM technologies WHERE user_id= ?', [req.user.id]);
-        const info = {
-            about: about[0],
-            skills,
-            experiences,
-            technologies
-        }
-        console.log()
-        res.render('about/list', info);
+        res.render('about/list', { about });
     },
     addAbout: async (req,res) => {
         const { title, description } = req.body;
@@ -38,7 +28,7 @@ const about = {
         };
         try{
             await pool.query('INSERT INTO about set ?', [about]);
-            req.flash('success', 'Link saved succesfully');
+            req.flash('success', 'about saved succesfully');
             res.redirect('/about');
         } catch(e) {
             console.log(e);
@@ -69,16 +59,6 @@ const about = {
         req.flash('success', 'about Updated Successfully');
         res.redirect('/about');
     }
-    // sendEmail: async (req,res) =>{
-    //     let info = await transporter.sendMail({
-    //         from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    //         to: "sicu.erickm@gmail.com, alfonsodelag1@gmail.com", // list of receivers
-    //         subject: req.subject, // Subject line
-    //         text: "Hello world?", // plain text body
-    //         html: "<b>Hello world?</b>" // html body
-    //       });
-    //     console.log("PreviewURL: $s",nodemailer.getTestMessageUrl(info));
-    // }
 }
 
 module.exports = about;
