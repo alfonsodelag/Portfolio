@@ -16,7 +16,7 @@ const nodemailer = require('nodemailer');
 const about = {
 
     getAboutInfo: async (req,res) => {
-        const about = await pool.query('SELECT * FROM about WHERE user_id= ?', [req.user.id]);
+        const about = await pool.query('SELECT * FROM about WHERE user_id= ?', [req.user.user_id]);
         res.render('about/list', { about });
     },
     addAbout: async (req,res) => {
@@ -24,7 +24,7 @@ const about = {
         const about = {
             title,
             description,
-            user_id: req.user.id
+            user_id: req.user.user_id
         };
         try{
             await pool.query('INSERT INTO about set ?', [about]);
@@ -35,14 +35,14 @@ const about = {
         }
     },
     deleteAbout: async (req,res) => {
-        const { id } = req.params;
-        await pool.query('DELETE FROM about WHERE ID =?', [id]);
+        const { user_id } = req.params;
+        await pool.query('DELETE FROM about WHERE user_id =?', [user_id]);
         req.flash('success', 'about Removed succesfully');
         res.redirect('/about');
     },
     getAbout: async (req, res) => {
         const { id } = req.params;
-        const about = await pool.query('SELECT * FROM about WHERE id = ?', [id]);
+        const about = await pool.query('SELECT * FROM about WHERE user_id = ?', [id]);
         console.log(about[0]);
         res.render('about/edit', {about: about[0]});
     },
@@ -53,9 +53,9 @@ const about = {
         const newabout = {
             username,
             description,
-            user_id: req.user.id
+            user_id: req.user.user_id
         };
-        await pool.query('UPDATE about set ? WHERE id = ?', [newabout, id]);
+        await pool.query('UPDATE about set ? WHERE user_id = ?', [newabout, id]);
         req.flash('success', 'about Updated Successfully');
         res.redirect('/about');
     }

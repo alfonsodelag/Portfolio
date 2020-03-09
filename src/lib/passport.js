@@ -48,17 +48,17 @@ passport.use('local.signup', new LocalStrategy({
     //  Ejecutando el query asignandole el new user enviando la variable new user con el password encriptado a la base de datos
     const result = await pool.query('INSERT INTO users SET ?', [newUser]);
     //  Asignarle el id de lo que regresa la ejecucion del result
-    newUser.id = result.insertId;
+    newUser.user_id = result.insertId;
     return done(null, newUser);
 }));
 
 //  Convierte al user en un objeto tipo Json
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user.user_id);
 });
 
 //  Aqui convierte la info del usuario en otro tipo de objeto
 passport.deserializeUser(async (id, done) => {
-    const rows = await pool.query('SELECT * FROM users Where id = ?', [id]);
+    const rows = await pool.query('SELECT * FROM users WHERE user_id = ?', [id]);
     done(null, rows[0]);
 });

@@ -7,16 +7,16 @@ const pool = require('../config/database.js');
 
 const experiences = {
     getExperiences: async (req,res) => {
-        const experiences = await pool.query('SELECT * FROM experiences WHERE user_id= ?', [req.user.id]);
+        const experiences = await pool.query('SELECT * FROM experiences WHERE user_id= ?', [req.user.user_id]);
         res.render('experiences/list', { experiences });
     },
     addExperience: async (req,res) => {
-        const { title, Year, Description } = req.body;
+        const { title, year, description } = req.body;
         const experience = {
             title,
-            Year,
-            Description,
-            user_id: req.user.id
+            year,
+            description,
+            user_id: req.user.user_id
         };
         try{
             await pool.query('INSERT INTO experiences set ?', [experience]);
@@ -28,26 +28,26 @@ const experiences = {
     },
     deleteExperience: async (req,res) => {
         const { id } = req.params;
-        await pool.query('DELETE FROM experiences WHERE ID =?', [id]);
+        await pool.query('DELETE FROM experiences WHERE user_id =?', [user_id]);
         req.flash('success', 'experiences Removed succesfully');
         res.redirect('/experiences');
     },
     getExperience: async (req, res) => {
-        const { id } = req.params;
-        const experience = await pool.query('SELECT * FROM experiences WHERE id = ?', [id]);
+        const { user_id } = req.params;
+        const experience = await pool.query('SELECT * FROM experiences WHERE user_id = ?', [user_id]);
         console.log(experience[0]);
         res.render('experiences/edit', {experience: experience[0]});
     },
     editExperience: async (req, res) => {
         console.log();
         const { id } = req.params;
-        const { title, Year, Description } = req.body;
+        const { title, year, description } = req.body;
         const newExperiences = {
             title, 
-            Year,
-            Description,
+            year,
+            description,
         };
-        await pool.query('UPDATE experiences set ? WHERE id = ?', [newExperiences, id]);
+        await pool.query('UPDATE experiences set ? WHERE user_id = ?', [newExperiences, user_id]);
         req.flash('success', 'experiences Updated Successfully');
         res.redirect('/experiences');
     }

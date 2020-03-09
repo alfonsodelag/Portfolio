@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer');
 
 const contact = {
     getContactInfo: async (req,res) => {
-        const contact = await pool.query('SELECT * FROM contact WHERE user_id= ?', [req.user.id]);
+        const contact = await pool.query('SELECT * FROM contact WHERE user_id= ?', [req.user.user_id]);
         res.render('contact/list', { contact });
     },
     addContact: async (req,res) => {
@@ -20,7 +20,7 @@ const contact = {
             email,
             title,
             description,
-            user_id: req.user.id
+            user_id: req.user.user_id
         };
         try{
             await pool.query('INSERT INTO contact set ?', [contact]);
@@ -54,13 +54,13 @@ const transporter = nodemailer.createTransport({
     },
     deleteContact: async (req,res) => {
         const { id } = req.params;
-        await pool.query('DELETE FROM contact WHERE ID =?', [id]);
+        await pool.query('DELETE FROM contact WHERE user_id =?', [id]);
         req.flash('success', 'contact Removed succesfully');
         res.redirect('/contact');
     },
     getContact: async (req, res) => {
         const { id } = req.params;
-        const contact = await pool.query('SELECT * FROM contact WHERE id = ?', [id]);
+        const contact = await pool.query('SELECT * FROM contact WHERE user_id = ?', [id]);
         console.log(contact[0]);
         res.render('contact/edit', {user: contact[0]});
     },
@@ -73,7 +73,7 @@ const transporter = nodemailer.createTransport({
             title,
             description
         };
-        await pool.query('UPDATE contact set ? WHERE id = ?', [newcontact, id]);
+        await pool.query('UPDATE contact set ? WHERE user_id = ?', [newcontact, id]);
         req.flash('success', 'user Updated Successfully');
         res.redirect('/contact');
     }

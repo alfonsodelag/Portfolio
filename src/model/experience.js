@@ -1,6 +1,6 @@
-const contact = { 
+const experience = {
     user_id: 0,
-    email: '',
     title: '',
+    year: '',
     description: ''
 }

@@ -4,7 +4,7 @@ const contact = {
     email,
     title,
     description,
-    user_id: req.user.id
+    user_id: req.user.user_id
 };
 const transporter = nodemailer.createTransport({
     service: 'gmail',
