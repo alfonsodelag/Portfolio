@@ -56,7 +56,6 @@ app.use((req,res,next) => {
 //  Routes
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
-app.use('/links', require('./routes/links'));
 app.use('/about', require('./routes/about'));
 app.use('/skills', require('./routes/skills'));
 app.use('/technologies', require('./routes/technologies'));

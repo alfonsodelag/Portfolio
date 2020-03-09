@@ -14,9 +14,9 @@ const users = {
     addUser: async (req,res) => {
         const { title, url, description } = req.body;
         const user = {
-            title,
-            url,
-            description,
+            username,
+            password,
+            fullname,
             user_id: req.user.id
         };
         try{
